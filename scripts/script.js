@@ -101,12 +101,14 @@ function fiveWins () {
     setTimeout(() => {announcement.textContent = 'You won 5 matches!', 1300});
     win5();
     playerWinCount = 0;
+    compWinCount = 0;
     return true;
 
   } else if ( compWinCount === 4) {
     setTimeout(() => {announcement.textContent = 'You lost 5 matches!', 1300});
     lose5();
     compWinCount = 0;
+    playerWinCount = 0;
     return true;
 
   }
