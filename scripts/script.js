@@ -27,34 +27,46 @@ function playRound (playerSelection, compSelection) {
       return null;
     } else {
       if (compSelection === 'paper') {
-        console.log(`You lose! Computer's ${compSelection} beats your ${playerSelection} !`);
-        return false;
+        var matchResult = new Object();
+            matchResult[0] = false;
+            matchResult[1] = `You lose! Computer's ${compSelection} beats your ${playerSelection} !`;
+        return matchResult;
       } else {
-        console.log(`You win! Your ${playerSelection} beats Computer's ${compSelection} !`);
-        return true;
+        var matchResult = new Object();
+            matchResult[0] = true;
+            matchResult[1] = `You win! Your ${playerSelection} beats Computer's ${compSelection} !`;
+        return matchResult;
       }
     }
   } else if (playerSelection === 'paper') {
       if (compSelection === 'rock') {
-        console.log(`You win! Your ${playerSelection} beats Computer's ${compSelection} !`);
-        return true;
+        var matchResult = new Object();
+            matchResult[0] = true;
+            matchResult[1] = `You win! Your ${playerSelection} beats Computer's ${compSelection} !`;
+        return matchResult;
       } else {
         if (compSelection === 'paper') {
           console.log('Draw! You both suck!');
           return null;
         } else {
-          console.log(`You lose! Computer's ${compSelection} beats your ${playerSelection} !`);
-          return false;
+          var matchResult = new Object();
+              matchResult[0] = false;
+              matchResult[1] = `You lose! Computer's ${compSelection} beats your ${playerSelection} !`;
+          return matchResult;
         }
     }
   } else {
     if (compSelection === 'rock') {
-      console.log(`You lose! Computer's ${compSelection} beats your ${playerSelection} !`);
-      return false;
+      var matchResult = new Object();
+          matchResult[0] = false;
+          matchResult[1] = `You lose! Computer's ${compSelection} beats your ${playerSelection} !`;
+      return matchResult;
     } else {
       if (compSelection === 'paper') {
-        console.log(`You win! Your ${playerSelection} beats Computer's ${compSelection} !`);
-        return true;
+        var matchResult = new Object();
+            matchResult[0] = true;
+            matchResult[1] = `You win! Your ${playerSelection} beats Computer's ${compSelection} !`
+        return matchResult;
       } else {
         console.log('Draw! You both suck!');
         return null;
@@ -120,21 +132,21 @@ function fiveWins () {
 // Shows the result in the click event
 function showResult (result) {
 
-  if (result === true) {
+  if (result[0] === true) {
     fight();
     win();
     if (fiveWins() === false) {
-      setTimeout(() => {announcement.textContent = 'You win!'}, 1300);
+      setTimeout(() => {announcement.textContent = result[1]}, 1300);
       playerWinCount += 1;
     } else {
       return;
     }
 
-  } else if (result === false) {
+  } else if (result[0] === false) {
     fight();
     lose();
     if (fiveWins() === false) {
-      setTimeout(() => {announcement.textContent = 'You lose!'}, 1300);
+      setTimeout(() => {announcement.textContent = result[1]}, 1300);
       compWinCount += 1;
     } else {
       return;

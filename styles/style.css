@@ -51,4 +51,28 @@ button:hover {
     text-align: center;
     background: rgba(0,0,0,0.4);
     text-shadow: 0 0 .5rem black;
+    width: 45   0px;
+}
+
+.score {
+    margin-top: 50px;
+    position: relative;
+}
+
+.scoreKid {
+    float: left;s
+}
+
+.scoreRohan {
+    float: right;
+}
+
+.kid {
+    width: 100px;
+    height: 100px;
+}
+
+.rohan {
+    width: 100px;
+    height: 100px;
 }
