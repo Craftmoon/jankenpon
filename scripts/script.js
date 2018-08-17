@@ -23,8 +23,10 @@ function playRound (playerSelection, compSelection) {
   //  Check who wins
   if (playerSelection === 'rock') {
     if (compSelection === 'rock') {
-      console.log('Draw! You both suck!');
-      return null;
+      var matchResult = new Object();
+          matchResult[0] = null;
+          matchResult[1] = 'Draw! You both suck!';
+      return matchResult;
     } else {
       if (compSelection === 'paper') {
         var matchResult = new Object();
@@ -46,8 +48,10 @@ function playRound (playerSelection, compSelection) {
         return matchResult;
       } else {
         if (compSelection === 'paper') {
-          console.log('Draw! You both suck!');
-          return null;
+          var matchResult = new Object();
+            matchResult[0] = null;
+            matchResult[1] = 'Draw! You both suck!';
+          return matchResult;
         } else {
           var matchResult = new Object();
               matchResult[0] = false;
@@ -68,8 +72,10 @@ function playRound (playerSelection, compSelection) {
             matchResult[1] = `You win! Your ${playerSelection} beats Computer's ${compSelection} !`
         return matchResult;
       } else {
-        console.log('Draw! You both suck!');
-        return null;
+        var matchResult = new Object();
+          matchResult[0] = null;
+          matchResult[1] = 'Draw! You both suck!';
+        return matchResult;
       }
     }
   }
@@ -105,19 +111,31 @@ function draw () {
 
 // Declaring the variables announcement to be used
 const announcement = document.querySelector('#announcement');
+const compWinTimes = document.querySelector('#comp-win-count');
+const playerWinTimes = document.querySelector('#player-win-count');
+let oldVar = 0;
 let playerWinCount = 0;
 let compWinCount = 0;
 
+
+// Mostra o placar
+function winCount (PWT, CWT) {
+  setTimeout(() => {compWinTimes.textContent = CWT},1400);
+  setTimeout(() => {playerWinTimes.textContent = PWT},1400);
+}
+
+// see if someone already won or lost five times
 function fiveWins () {
+  
   if (playerWinCount === 4) {
-    setTimeout(() => {announcement.textContent = 'You won 5 matches!', 1300});
+    setTimeout(() => {announcement.textContent = `You just won 5 matches!`}, 1300);
     win5();
     playerWinCount = 0;
     compWinCount = 0;
     return true;
 
   } else if ( compWinCount === 4) {
-    setTimeout(() => {announcement.textContent = 'You lost 5 matches!', 1300});
+    setTimeout(() => {announcement.textContent = `You just lost 5 matches!`}, 1300);
     lose5();
     compWinCount = 0;
     playerWinCount = 0;
@@ -157,21 +175,25 @@ function showResult (result) {
       draw();
       setTimeout(() => {announcement.textContent = 'It\'s a draw!'}, 1300);
     }
+
 } 
 
 
 // Buttons that play the game on click
 rock.addEventListener('click', () => { 
   announcement.textContent = ''
-  showResult(playRound('rock', computerPlay()))
+  showResult(playRound('rock', computerPlay()));
+  winCount(playerWinCount, compWinCount);
 });
 
 paper.addEventListener('click', () => {
   announcement.textContent = ''
-  showResult(playRound('paper', computerPlay()))
+  showResult(playRound('paper', computerPlay()));
+  winCount(playerWinCount, compWinCount);
 });
 
 scissors.addEventListener('click', () => {
   announcement.textContent = ''
-  showResult(playRound('scissors', computerPlay()))
+  showResult(playRound('scissors', computerPlay()));
+  winCount(playerWinCount, compWinCount);
 });
